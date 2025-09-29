@@ -1,0 +1,42 @@
+import java.util.*;
+
+public class Program5 {
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+
+        System.out.print("Enter a word: ");
+        String word = s.nextLine();
+
+        System.out.print("Enter a phrase: ");
+        String phrase = s.nextLine();
+
+        System.out.print("Enter a character: ");
+        char ch = s.next().charAt(0);
+
+        System.out.print("Enter a byte value: ");
+        byte num1 = s.nextByte();
+
+        System.out.print("Enter a short value: ");
+        short num2 = s.nextShort();
+
+        System.out.print("Enter an integer value: ");
+        int num3 = s.nextInt();
+
+        System.out.print("Enter a long value: ");
+        long num4 = s.nextLong();
+
+        System.out.print("Enter a floating point value: ");
+        float num5 = s.nextFloat();
+
+        System.out.print("Enter a double point value: ");
+        double num6 = s.nextDouble();
+
+        System.out.print("Enter a boolean value: ");
+        boolean thruth = s.nextBoolean();
+
+        System.out.println("You've entered the ff: \n"
+                + word + "\n" + phrase + "\n" + ch + "\n" + num1 + "\n"
+                + num2 + "\n" + num3 + "\n" + num4 + "\n"
+                + num5 + "\n" + num6 + "\n" + thruth);
+    }
+}
