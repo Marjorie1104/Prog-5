@@ -1,0 +1,52 @@
+#include <iostream>
+#include <thread>
+#include <chrono>
+using namespace std;
+
+// Role functions
+void cashier() {
+    cout << "Cashier: Scanning items...\n";
+    this_thread::sleep_for(chrono::seconds(2));
+    cout << "Cashier: Finished scanning.\n";
+}
+
+void bagger() {
+    cout << "Bagger: Putting items into bags...\n";
+    this_thread::sleep_for(chrono::seconds(2));
+    cout << "Bagger: Finished bagging.\n";
+}
+
+void paymentClerk() {
+    cout << "Payment Clerk: Processing payment...\n";
+    this_thread::sleep_for(chrono::seconds(3));
+    cout << "Payment Clerk: Payment successful.\n";
+}
+
+void receiptPrinter() {
+    cout << "Receipt Printer: Printing receipt...\n";
+    this_thread::sleep_for(chrono::seconds(1));
+    cout << "Receipt Printer: Receipt ready.\n";
+}
+
+int main() {
+    cout << "=============================================================\n";
+    cout << "     SUPERMARKET CHECKOUT SYSTEM - PARALLEL ROLES DEMO       \n";
+    cout << "=============================================================\n";
+
+    // 4 parallel threads (roles)
+    thread t1(cashier);
+    thread t2(bagger);
+    thread t3(paymentClerk);
+    thread t4(receiptPrinter);
+
+    // Wait for all roles to finish
+    t1.join();
+    t2.join();
+    t3.join();
+    t4.join();
+
+    cout << "\n✅ Customer checkout completed successfully with all roles!\n";
+    cout << "=============================================================\n";
+
+    return 0;
+}
