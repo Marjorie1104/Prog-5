@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    // Main menu L-R, Submenu T-B
+    cout << "===== SUPERMARKET CHECKOUT SYSTEM =====\n\n";
+
+    // Customers
+    cout << "Customers (L -> R):\n";
+    cout << "  1. Customer 1\n";
+    cout << "  2. Customer 2\n";
+    cout << "  3. Customer 3\n";
+    cout << "  4. Customer 4\n\n";
+
+    // Checkout Counters
+    cout << "Checkout Counters (L -> R):\n";
+    cout << "  1. Counter 1\n";
+    cout << "  2. Counter 2\n";
+    cout << "  3. Counter 3\n";
+    cout << "  4. Counter 4\n\n";
+
+    // Processes per Counter
+    cout << "Processes per Counter (T -> B):\n";
+    cout << "  1. Scan Items\n";
+    cout << "  2. Compute Total\n";
+    cout << "  3. Process Payment\n";
+    cout << "  4. Print Receipt\n\n";
+
+    cout << "=======================================\n";
+    cout << "Note: In a real parallel system, multiple customers are\n";
+    cout << "processed at different counters at the SAME TIME.\n";
+
+    return 0;
+}
