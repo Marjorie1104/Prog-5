@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "=============================================================\n";
+    cout << "           SUPERMARKET CHECKOUT SYSTEM (PARALLEL)            \n";
+    cout << "=============================================================\n\n";
+
+    cout << " 1. Customers (L -> R)\n";
+    cout << "    a. Customer 1\n";
+    cout << "    b. Customer 2\n";
+    cout << "    c. Customer 3\n";
+    cout << "    d. Customer 4\n";
+    cout << " ------------------------------------------------------------\n";
+
+    cout << " 2. Checkout Counters (L -> R)\n";
+    cout << "    a. Counter 1\n";
+    cout << "    b. Counter 2\n";
+    cout << "    c. Counter 3\n";
+    cout << "    d. Counter 4\n";
+    cout << " ------------------------------------------------------------\n";
+
+    cout << " 3. Processes per Counter (T -> B)\n";
+    cout << "    a. Scan Items\n";
+    cout << "    b. Compute Total\n";
+    cout << "    c. Process Payment\n";
+    cout << "    d. Print Receipt\n";
+    cout << " ------------------------------------------------------------\n";
+
+    cout << " Example Mapping:\n";
+    cout << "   Customer 1 -> Counter 1 -> [Scan -> Total -> Pay -> Receipt]\n";
+    cout << "   Customer 2 -> Counter 2 -> [Scan -> Total -> Pay -> Receipt]\n";
+    cout << "   Customer 3 -> Counter 3 -> [Scan -> Total -> Pay -> Receipt]\n";
+    cout << "   Customer 4 -> Counter 4 -> [Scan -> Total -> Pay -> Receipt]\n";
+    cout << "=============================================================\n";
+    cout << "Note: Counters run in parallel (L -> R), steps per counter run T -> B.\n";
+
+    return 0;
+}
