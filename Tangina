@@ -1,0 +1,49 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    int choice;
+
+    do {
+        cout << "=============================================================\n";
+        cout << "           SUPERMARKET CHECKOUT SYSTEM (PARALLEL)            \n";
+        cout << "=============================================================\n\n";
+
+        cout << " Select a Customer (L -> R)\n";
+        cout << " 1. Customer 1\n";
+        cout << " 2. Customer 2\n";
+        cout << " 3. Customer 3\n";
+        cout << " 4. Customer 4\n";
+        cout << " 0. Quit\n";
+        cout << "-------------------------------------------------------------\n";
+        cout << " Enter your choice: ";
+        cin >> choice;
+
+        if (choice >= 1 && choice <= 4) {
+            cout << "\nCustomer " << choice << " has entered the checkout.\n";
+
+            // Assign counter based on customer number
+            int counter = choice; 
+            cout << "Assigned to Counter " << counter << ".\n\n";
+
+            // Step by step process (T -> B)
+            cout << "Processing at Counter " << counter << ":\n";
+            cout << "   1. Scanning items...\n";
+            cout << "   2. Computing total...\n";
+            cout << "   3. Processing payment...\n";
+            cout << "   4. Printing receipt...\n";
+            cout << "-------------------------------------------------------------\n";
+            cout << " Checkout complete for Customer " << choice << "!\n\n";
+        }
+        else if (choice == 0) {
+            cout << "\nExiting system... Goodbye!\n";
+        }
+        else {
+            cout << "\nInvalid choice! Try again.\n\n";
+        }
+
+    } while (choice != 0);
+
+    return 0;
+}
