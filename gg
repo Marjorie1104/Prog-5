@@ -1,0 +1,60 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+void checkoutProcess(int customer) {
+    cout << "\nCustomer " << customer << " has entered the checkout.\n";
+    cout << "Assigned to Counter " << customer << ".\n\n";
+
+    // Step by step process (T -> B)
+    cout << "Processing at Counter " << customer << ":\n";
+    cout << "   1. Scanning items...\n";
+    cout << "   2. Computing total...\n";
+    cout << "   3. Processing payment...\n";
+    cout << "   4. Printing receipt...\n";
+    cout << "-------------------------------------------------------------\n";
+    cout << " Checkout complete for Customer " << customer << "!\n";
+}
+
+int main() {
+    int choice;
+
+    do {
+        cout << "=============================================================\n";
+        cout << "           SUPERMARKET CHECKOUT SYSTEM (PARALLEL)            \n";
+        cout << "=============================================================\n\n";
+
+        cout << " Select a Customer (L -> R)\n";
+        cout << " 1. Customer 1\n";
+        cout << " 2. Customer 2\n";
+        cout << " 3. Customer 3\n";
+        cout << " 4. Customer 4\n";
+        cout << " 5. Process ALL customers\n";
+        cout << " 0. Quit\n";
+        cout << "-------------------------------------------------------------\n";
+        cout << " Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1: checkoutProcess(1); break;
+            case 2: checkoutProcess(2); break;
+            case 3: checkoutProcess(3); break;
+            case 4: checkoutProcess(4); break;
+            case 5:
+                for (int i = 1; i <= 4; i++) {
+                    checkoutProcess(i);
+                }
+                break;
+            case 0:
+                cout << "\nExiting system... Goodbye!\n";
+                break;
+            default:
+                cout << "\nInvalid choice! Try again.\n";
+        }
+
+        cout << "\n";
+
+    } while (choice != 0);
+
+    return 0;
+}
