@@ -1,0 +1,99 @@
+#include <iostream>
+#include <thread>
+#include <chrono>
+using namespace std;
+
+// Roles
+void cashier(int customer) {
+    cout << "[Customer " << customer << "] Cashier: Scanning items...\n";
+    this_thread::sleep_for(chrono::seconds(1));
+    cout << "[Customer " << customer << "] Cashier: Finished scanning.\n";
+}
+
+void supervisor(int customer) {
+    cout << "[Customer " << customer << "] Supervisor: Monitoring transaction...\n";
+    this_thread::sleep_for(chrono::seconds(2));
+    cout << "[Customer " << customer << "] Supervisor: Transaction approved.\n";
+}
+
+void posSystem(int customer) {
+    cout << "[Customer " << customer << "] POS System: Computing total & processing payment...\n";
+    this_thread::sleep_for(chrono::seconds(2));
+    cout << "[Customer " << customer << "] POS System: Payment successful.\n";
+}
+
+// Checkout process per customer
+void processCustomer(int customer) {
+    cout << "\n================= CHECKOUT SYSTEM =================\n";
+    cout << " Customer: " << customer << "\n";
+    cout << " Counter Assigned: " << customer << "\n";
+    cout << " Roles Active: Cashier | Supervisor | POS System\n";
+    cout << "===================================================\n\n";
+
+    // Run 3 roles in parallel
+    thread t1(cashier, customer);
+    thread t2(supervisor, customer);
+    thread t3(posSystem, customer);
+
+    t1.join();
+    t2.join();
+    t3.join();
+
+    cout << "✅ Customer " << customer << " checkout completed!\n";
+    cout << "---------------------------------------------------\n";
+}
+
+int main() {
+    int choice;
+
+    do {
+        cout << "\n================= SUPERMARKET CHECKOUT SYSTEM =================\n\n";
+
+        cout << "   [1. Customers]           [2. Checkout Counters]        [3. Roles]\n";
+        cout << "        |                           |                           |\n";
+        cout << "     a. Customer 1              a. Counter 1               a. Cashier\n";
+        cout << "     b. Customer 2              b. Counter 2               b. Supervisor\n";
+        cout << "     c. Customer 3              c. Counter 3               c. POS System\n";
+        cout << "     d. Customer 4              d. Counter 4\n\n";
+
+        cout << "=================================================================\n";
+        cout << "  MAIN MENU:\n";
+        cout << "   1. Process Customer 1\n";
+        cout << "   2. Process Customer 2\n";
+        cout << "   3. Process Customer 3\n";
+        cout << "   4. Process Customer 4\n";
+        cout << "   5. Process ALL Customers (Parallel)\n";
+        cout << "   0. Quit\n";
+        cout << "=================================================================\n";
+        cout << " Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1: processCustomer(1); break;
+            case 2: processCustomer(2); break;
+            case 3: processCustomer(3); break;
+            case 4: processCustomer(4); break;
+            case 5: {
+                // Run all 4 customers in parallel
+                thread c1(processCustomer, 1);
+                thread c2(processCustomer, 2);
+                thread c3(processCustomer, 3);
+                thread c4(processCustomer, 4);
+
+                c1.join();
+                c2.join();
+                c3.join();
+                c4.join();
+                break;
+            }
+            case 0:
+                cout << "Exiting system... Goodbye!\n";
+                break;
+            default:
+                cout << "Invalid choice! Try again.\n";
+        }
+
+    } while (choice != 0);
+
+    return 0;
+}
