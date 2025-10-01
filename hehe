@@ -1,0 +1,88 @@
+#include <iostream>
+#include <thread>
+#include <chrono>
+using namespace std;
+
+// Roles (cashier, bagger, etc.)
+void cashier(int customer) {
+    cout << "[Customer " << customer << "] Cashier: Scanning items...\n";
+    this_thread::sleep_for(chrono::seconds(1));
+    cout << "[Customer " << customer << "] Cashier: Finished scanning.\n";
+}
+
+void bagger(int customer) {
+    cout << "[Customer " << customer << "] Bagger: Putting items into bags...\n";
+    this_thread::sleep_for(chrono::seconds(1));
+    cout << "[Customer " << customer << "] Bagger: Finished bagging.\n";
+}
+
+void paymentClerk(int customer) {
+    cout << "[Customer " << customer << "] Payment Clerk: Processing payment...\n";
+    this_thread::sleep_for(chrono::seconds(2));
+    cout << "[Customer " << customer << "] Payment Clerk: Payment successful.\n";
+}
+
+void receiptPrinter(int customer) {
+    cout << "[Customer " << customer << "] Receipt Printer: Printing receipt...\n";
+    this_thread::sleep_for(chrono::seconds(1));
+    cout << "[Customer " << customer << "] Receipt Printer: Receipt ready.\n";
+}
+
+// Function to run all roles for one customer in parallel
+void processCustomer(int customer) {
+    cout << "\n=== Starting checkout for Customer " << customer << " ===\n";
+
+    // Run all 4 roles in parallel
+    thread t1(cashier, customer);
+    thread t2(bagger, customer);
+    thread t3(paymentClerk, customer);
+    thread t4(receiptPrinter, customer);
+
+    // Wait for all to finish
+    t1.join();
+    t2.join();
+    t3.join();
+    t4.join();
+
+    cout << "✅ Customer " << customer << " checkout completed!\n";
+    cout << "-------------------------------------------------------------\n";
+}
+
+int main() {
+    int choice;
+
+    do {
+        cout << "\n=============================================================\n";
+        cout << "        SUPERMARKET CHECKOUT SYSTEM (PARALLEL MENU)          \n";
+        cout << "=============================================================\n";
+        cout << " 1. Process Customer 1\n";
+        cout << " 2. Process Customer 2\n";
+        cout << " 3. Process Customer 3\n";
+        cout << " 4. Process Customer 4\n";
+        cout << " 5. Process ALL Customers (1–4)\n";
+        cout << " 0. Quit\n";
+        cout << "-------------------------------------------------------------\n";
+        cout << " Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1: processCustomer(1); break;
+            case 2: processCustomer(2); break;
+            case 3: processCustomer(3); break;
+            case 4: processCustomer(4); break;
+            case 5:
+                for (int i = 1; i <= 4; i++) {
+                    processCustomer(i);
+                }
+                break;
+            case 0:
+                cout << "Exiting system... Goodbye!\n";
+                break;
+            default:
+                cout << "Invalid choice! Try again.\n";
+        }
+
+    } while (choice != 0);
+
+    return 0;
+}
